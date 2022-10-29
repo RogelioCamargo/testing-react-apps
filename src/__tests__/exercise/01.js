@@ -42,9 +42,9 @@ test('counter increments and decrements when the buttons are clicked', () => {
   expect(message.textContent).toBe('Current count: 1')
   // 🐨 click the decrement button (💰 act(() => decrement.click()))
 	const decrementClickEvent = new MouseEvent('click', {
-    bubbles: true,
+    bubbles: true, // true for event delegation 
     cancelable: true,
-    button: 0,
+    button: 0, // 0 = left click
   })
   act(() => decrement.dispatchEvent(decrementClickEvent))
   // 🐨 assert the message.textContent
