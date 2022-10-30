@@ -7,12 +7,13 @@ import userEvent from '@testing-library/user-event'
 import Login from '../../components/login'
 import faker from 'faker'
 
-function buildLoginForm({username, password} = {}) {
-    return {
-      username: username || faker.internet.userName(),
-      password: password || faker.internet.password(),
-    }
+function buildLoginForm(overrides) {
+  return {
+    username: faker.internet.userName(),
+    password: faker.internet.password(),
+    ...overrides,
   }
+}
 
 test('submitting the form calls onSubmit with username and password', async () => {
   // 🐨 create a variable called "submittedData" and a handleSubmit function that
@@ -23,7 +24,7 @@ test('submitting the form calls onSubmit with username and password', async () =
   // 🐨 render the login with your handleSubmit function as the onSubmit prop
   render(<Login onSubmit={handleSubmit} />)
   // 🐨 get the username and password fields via `getByLabelText`
-  
+
   const {username, password} = buildLoginForm()
 
   // 🐨 use `await userEvent.type...` to change the username and password fields to
